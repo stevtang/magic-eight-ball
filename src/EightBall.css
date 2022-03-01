@@ -1,6 +1,10 @@
-.btn {
+.EightBall {
     border-radius: 50%;
-    height: 330px;
+    height: 150px;
     width: 170px;
     
+}
+
+.EightBall-msg {
+    color: white;
 }

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./EightBall.css";
 
-/** returns random int index from 0 to length of answers */
-function getRandomColorAndMessage(answers) {
+/** returns random int index from 0 to length of answers
+ *  REVIEW: move inside component or give better name(choice or choose)
+ */
+function choice(answers) {
   return Math.floor(Math.random() * answers.length);
 }
 
@@ -12,26 +14,27 @@ function getRandomColorAndMessage(answers) {
  *  - Answers: {msg, color}
  *
  *  State:
- *  -message -> random message
- *  -color -> random color
+ *  -message -> random message & color
  *
  *  Index -> App -> EightBall
  */
 
 function EightBall({ answers }) {
-  const [msg, setMsg] = useState("Think of a question");
-  const [color, setColor] = useState("black");
+  const [msgAndColor, setMsgAndColor] = useState({
+    msg: "Think of a question",
+    color: "black",
+  });
   function handleClick() {
-    setMsg(answers[getRandomColorAndMessage(answers)].msg);
-    setColor(answers[getRandomColorAndMessage(answers)].color);
+    setMsgAndColor(answers[choice(answers)]);
   }
+
   return (
     <button
-      className="btn"
+      className="EightBall"
       onClick={handleClick}
-      style={{ backgroundColor: color, borderRadius: "50%", height: "150px" }}
+      style={{ backgroundColor: msgAndColor.color }}
     >
-      <b style={{ color: "white" }}>{msg}</b>
+      <b className="EightBall-msg">{msgAndColor.msg}</b>
     </button>
   );
 }
