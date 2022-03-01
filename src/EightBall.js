@@ -27,15 +27,29 @@ function EightBall({ answers }) {
   function handleClick() {
     setMsgAndColor(answers[choice(answers)]);
   }
+  
+
+  function setInitial() {
+    setMsgAndColor({
+      msg: "Think of a question",
+      color: "black",
+    });
+  }
 
   return (
-    <button
-      className="EightBall"
-      onClick={handleClick}
-      style={{ backgroundColor: msgAndColor.color }}
-    >
-      <b className="EightBall-msg">{msgAndColor.msg}</b>
-    </button>
+    <div className="EightBall">
+      <button
+        className="EightBall-random"
+        onClick={handleClick}
+        style={{ backgroundColor: msgAndColor.color }}
+      >
+        <b className="EightBall-msg">{msgAndColor.msg}</b>
+      </button>
+
+      <button className="EightBall-initial" onClick={setInitial}>
+        <b className="EightBall-msg">Reset</b>
+      </button>
+    </div>
   );
 }
 
